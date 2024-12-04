@@ -1,0 +1,79 @@
+name: expense_book
+description: "A new Flutter project."
+
+
+publish_to: 'none'
+version: 1.0.0+1
+
+
+environment:
+  sdk: ^3.5.4
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # all packages here :
+  cupertino_icons: ^1.0.8
+  calendar_date_picker2: ^1.1.7
+  path_provider: ^2.1.5
+  sqflite: ^2.4.1
+  loading_overlay: ^0.4.2
+  fluttertoast: ^8.2.8
+  intl: ^0.20.1
+  flutter_riverpod: ^2.6.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # all dev packages here :
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/icons/icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/fonts/
+
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Medium.ttf
+          weight: 400
+        - asset: assets/fonts/NotoSans-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/NotoSans-SemiBold.ttf
+          weight: 700
+
+    - family: IBMPlexSans
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IBMPlexSans-Medium.ttf
+          weight: 300
+        - asset: assets/fonts/IBMPlexSans-SemiBold.ttf
+          weight: 700
+
+    - family: Jost
+      fonts:
+        - asset: assets/fonts/Jost-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Jost-Medium.ttf
+          weight: 300
+        - asset: assets/fonts/Jost-SemiBold.ttf
+          weight: 700
