@@ -1,3 +1,4 @@
+import 'package:expense_book/style_resources/colors.dart';
 import 'package:expense_book/style_resources/text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -6,52 +7,89 @@ Future showDeleteDialogue(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Center(
-          child: Icon(
-            Icons.delete_outline_outlined,
-            size: 50,
-          ),
-          //Text('Delete', textAlign: TextAlign.center),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
         ),
-        titleTextStyle: const TextStyle(
-            fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
-        content: const Text('Are you sure you want to delete this Entry ?',
-            textAlign: TextAlign.center),
-        contentTextStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
-        shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Icon(
+              Icons.delete_outline_outlined,
+              size: 26,
+              color: Colors.red, // Highlight the delete icon with red color
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Delete Entry',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: kBlackColor,
+              ),
+            ),
+          ],
+        ),
+        content: const Text(
+          'Are you sure you want to delete this entry?',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
+            color: kBlackColor,
+          ),
+        ),
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         actions: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context, false);
-                },
-                child: const Text(
-                  'No',
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(
-                height: 25.0,
-                width: 2.0,
-                child: Container(color: Colors.grey),
-              ),
-              TextButton(
-                onPressed: () {
-                  toastMessage("The Entry has been deleted");
-                  Navigator.pop(context, true);
-                },
-                child: const Text(
-                  'Yes',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
+              const SizedBox(width: 15),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () {
+                    toastMessage("The Entry has been deleted");
+                    Navigator.pop(context, true);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text(
+                      'Yes',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
                   ),
                 ),
               ),

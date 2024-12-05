@@ -73,8 +73,8 @@ class EntryService {
     required String remark,
     required int amount,
     required String type,
+    required String date,
     required String time,
-    required int rwTime,
   }) async {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
@@ -83,8 +83,8 @@ class EntryService {
       typeColumn: type,
       remarkColumn: remark,
       amountColumn: amount,
+      dateColumn: date,
       timeColumn: time,
-      rwTimeColumn: rwTime,
     });
     devtools.log(entry.toString());
 
@@ -92,9 +92,9 @@ class EntryService {
       id: entry,
       remark: remark,
       type: type == 'cashIn' ? EntryType.cashIn : EntryType.cashOut,
-      time: time,
+      date: date,
       amount: amount,
-      rwTime: rwTime,
+      time: time,
     );
 
     _entry.add(enter);
@@ -132,8 +132,8 @@ class EntryService {
     required int amount,
     required String remark,
     required String type,
+    required String date,
     required String time,
-    required int rwTime,
   }) async {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
@@ -148,8 +148,8 @@ class EntryService {
         typeColumn: type,
         remarkColumn: remark,
         amountColumn: amount,
+        dateColumn: date,
         timeColumn: time,
-        rwTimeColumn: rwTime,
       },
       where: 'id = ?',
       whereArgs: [id],
