@@ -89,7 +89,6 @@ class _ExpenseEditCardState extends State<ExpenseEditCard> {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
-    final textSize = screenWidth < 400 ? 12.0 : 14.0;
     String formattedDate = DateFormat("dd/MM/yyyy").format(selectedDate);
     String formattedTime = selectedTime.format(context);
 
@@ -99,7 +98,7 @@ class _ExpenseEditCardState extends State<ExpenseEditCard> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Container(
-            width: screenWidth * 0.95,
+            width: screenWidth * 0.9,
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: Colors.white,
