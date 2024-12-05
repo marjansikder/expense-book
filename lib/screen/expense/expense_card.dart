@@ -68,7 +68,7 @@ class ExpenseCard extends StatelessWidget {
             title: Text(category, style: kMediumTextStyle),
             subtitle: Text(selectedDate),
             trailing: Text(
-              '৳ $cost',
+              '$cost ৳',
               style: const TextStyle(
                 color: kPrimaryColor,
                 fontSize: 20,

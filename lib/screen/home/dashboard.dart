@@ -1,5 +1,6 @@
 import 'package:expense_book/crud/database_entry.dart';
 import 'package:expense_book/crud/notes_services.dart';
+import 'package:expense_book/custom_widget/methods.dart';
 import 'package:expense_book/screen/expense/expense_card.dart';
 import 'package:expense_book/custom_widget/input_field.dart';
 import 'package:expense_book/custom_widget/dashboard_bottom_sheet.dart';
@@ -57,10 +58,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
 
   Future<void> _addExpense() async {
     if (formKey.currentState!.validate()) {
-      // Save the form state
+
       formKey.currentState!.save();
 
-      // Create the entry
       await _entryService.createEntry(
         remark: categoryController.text,
         amount: int.tryParse(amountController.text) ?? 0,
@@ -69,11 +69,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         time: selectedTime.format(context),
       );
 
-      // Clear input fields
       amountController.clear();
       categoryController.clear();
 
-      // Show success message
       toastMessage('Entry Created!');
     }
   }
@@ -142,7 +140,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               style: TextStyle(fontSize: textSize),
             ),
             onPressed: () => selectDate(context),
-            style: _buttonStyle(),
+            style: StyleProperty().elevatedIconStyle(),
           ),
         ),
         const SizedBox(width: 10),
@@ -154,7 +152,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               style: TextStyle(fontSize: textSize),
             ),
             onPressed: () => selectTime(context),
-            style: _buttonStyle(),
+            style: StyleProperty().elevatedIconStyle(),
           ),
         ),
       ],
@@ -262,13 +260,4 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     );
   }
 
-  ButtonStyle _buttonStyle() {
-    return ElevatedButton.styleFrom(
-      backgroundColor: buttonColor,
-      foregroundColor: kWhiteColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-    );
-  }
 }

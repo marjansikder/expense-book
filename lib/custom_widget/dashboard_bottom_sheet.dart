@@ -19,10 +19,6 @@ class DashboardBottomSheet extends StatelessWidget {
       decoration: const BoxDecoration(
         //color: Color(0xFF142850),
         color: buttonColor,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(8),
-          topLeft: Radius.circular(8),
-        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

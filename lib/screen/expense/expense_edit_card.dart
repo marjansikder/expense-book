@@ -2,6 +2,7 @@ import 'package:expense_book/crud/database_entry.dart';
 import 'package:expense_book/crud/notes_services.dart';
 import 'package:expense_book/custom_widget/input_field.dart';
 import 'package:expense_book/style_resources/colors.dart';
+import 'package:expense_book/style_resources/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -173,13 +174,7 @@ class _ExpenseEditCardState extends State<ExpenseEditCard> {
                           icon: const Icon(Icons.date_range, size: 16),
                           label: Text(formattedDate),
                           onPressed: () => selectDate(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: buttonColor,
-                            foregroundColor: kWhiteColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
+                          style: StyleProperty().elevatedIconStyle(),
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -188,13 +183,7 @@ class _ExpenseEditCardState extends State<ExpenseEditCard> {
                           icon: const Icon(Icons.access_time, size: 16),
                           label: Text(formattedTime),
                           onPressed: () => selectTime(context),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: buttonColor,
-                            foregroundColor: kWhiteColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
+                          style: StyleProperty().elevatedIconStyle(),
                         ),
                       ),
                     ],

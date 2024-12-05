@@ -9,12 +9,20 @@ const kHintTextStyle = TextStyle(color: kTextGreyColor, fontSize: 14, fontWeight
 const kCreditTextStyle = TextStyle(fontSize: 20, color: kGreenColor);
 const kDebitTextStyle = TextStyle(fontSize: 20, color: kRedColor);
 
-Future<void> toastMessage(String text) {
-  return Fluttertoast.showToast(
-    msg: text,
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    backgroundColor: Colors.black87,
-    timeInSecForIosWeb: 1,
-  );
+
+class StyleProperty {
+
+  ButtonStyle elevatedIconStyle() {
+    return ElevatedButton.styleFrom(
+      backgroundColor: buttonColor.withOpacity(.4),
+      foregroundColor: kWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+    );
+  }
+
 }
+
+
+

@@ -1,5 +1,5 @@
+import 'package:expense_book/custom_widget/methods.dart';
 import 'package:expense_book/style_resources/colors.dart';
-import 'package:expense_book/style_resources/text_style.dart';
 import 'package:flutter/material.dart';
 
 Future showDeleteDialogue(BuildContext context) {
