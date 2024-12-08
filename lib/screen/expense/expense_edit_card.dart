@@ -65,7 +65,7 @@ class _ExpenseEditCardState extends State<ExpenseEditCard> {
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime(1920, 1),
-      lastDate: DateTime(2101),
+      lastDate: DateTime.now()
     );
     if (picked != null) {
       setState(() {

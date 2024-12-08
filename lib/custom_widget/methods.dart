@@ -10,3 +10,4 @@ Future<void> toastMessage(String text) {
     timeInSecForIosWeb: 1,
   );
 }
+

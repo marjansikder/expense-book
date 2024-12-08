@@ -39,7 +39,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime(1920, 1),
-      lastDate: DateTime(2101),
+      lastDate: DateTime.now(),
     );
     if (picked != null && picked != selectedDate) {
       setState(() => selectedDate = picked);
@@ -105,6 +105,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             Form(key: formKey, child: _buildInputFields(context)),
             _buildAddExpenseButton(context),
             const SizedBox(height: 10),
+            //_buildExpenseSortedList(allEntriesAsync),
             _buildExpenseList(allEntriesAsync),
           ],
         ),
@@ -260,5 +261,91 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       ),
     );
   }
+
+  Widget _buildExpenseSortedList(AsyncValue<List<DatabaseEntry>> allEntriesAsync) {
+    return allEntriesAsync.when(
+      data: (entries) {
+        if (entries.isEmpty) {
+          return const Center(
+            child: Text('You have not entered any entries yet!'),
+          );
+        }
+
+        final sortedEntries = List.of(entries)
+          ..sort((a, b) {
+            // Parse date strings into DateTime
+            final dateA = DateFormat("dd/MM/yyyy").parse(a.date.trim());
+            final dateB = DateFormat("dd/MM/yyyy").parse(b.date.trim());
+
+            if (dateA != dateB) {
+              return dateB.compareTo(dateA); // Latest date first
+            }
+
+            // Parse time strings into TimeOfDay
+            TimeOfDay parseTime(String time) {
+              final parts = time.trim().split(':');
+              final hour = int.parse(parts[0]);
+              final minute = int.parse(parts[1].split(' ')[0]);
+              final period = parts[1].split(' ')[1];
+              return TimeOfDay(
+                hour: period == "PM" && hour < 12 ? hour + 12 : hour % 24,
+                minute: minute,
+              );
+            }
+
+            final timeA = parseTime(a.time);
+            final timeB = parseTime(b.time);
+
+            // Compare times
+            if (timeA.hour != timeB.hour) {
+              return timeB.hour.compareTo(timeA.hour); // Latest hour first
+            }
+
+            return timeB.minute.compareTo(timeA.minute); // Latest minute first
+          });
+
+
+
+        return Expanded(
+          child: ListView.builder(
+            itemCount: sortedEntries.length,
+            itemBuilder: (ctx, i) {
+              return ExpenseCard(
+                id: sortedEntries[i].id,
+                category: sortedEntries[i].remark,
+                cost: sortedEntries[i].amount,
+                selectedDate: sortedEntries[i].date,
+                selectedTime: sortedEntries[i].time,
+                onDelete: () {
+                  // Handle deletion and update state
+                  EntryService().deleteNote(id: sortedEntries[i].id);
+                  setState(() {
+                    entries.removeAt(i);
+                  });
+                },
+                onTap: () => showModalBottomSheet(
+                  context: ctx,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  builder: (ctx) => ExpenseEditCard(
+                    id: sortedEntries[i].id.toString(),
+                    oldAmount: sortedEntries[i].amount,
+                    oldRemark: sortedEntries[i].remark,
+                    oldDate: sortedEntries[i].date,
+                    oldType: sortedEntries[i].type,
+                    oldTime: sortedEntries[i].time,
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) => Center(child: Text('Error: $error')),
+    );
+  }
+
 
 }
