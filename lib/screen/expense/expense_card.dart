@@ -10,6 +10,7 @@ class ExpenseCard extends StatelessWidget {
   final String category;
   final int cost;
   final String selectedDate;
+  final String selectedTime;
   final Function() onTap;
   final Function() onDelete; // Add an onDelete callback
 
@@ -19,6 +20,7 @@ class ExpenseCard extends StatelessWidget {
     required this.category,
     required this.cost,
     required this.selectedDate,
+    required this.selectedTime,
     required this.onTap,
     required this.onDelete, // Pass the onDelete function
   });
@@ -66,7 +68,8 @@ class ExpenseCard extends StatelessWidget {
           ),
           child: ListTile(
             title: Text(category, style: kMediumTextStyle),
-            subtitle: Text(selectedDate),
+            subtitle: Text('$selectedTime  $selectedDate'),
+            subtitleTextStyle: subtitleTextStyle,
             trailing: Text(
               '$cost ৳',
               style: const TextStyle(

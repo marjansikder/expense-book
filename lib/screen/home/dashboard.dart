@@ -226,6 +226,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 category: entries[i].remark,
                 cost: entries[i].amount,
                 selectedDate: entries[i].date,
+                selectedTime: entries[i].time,
                 onTap: () => showModalBottomSheet(
                   context: ctx,
                   isScrollControlled: true,

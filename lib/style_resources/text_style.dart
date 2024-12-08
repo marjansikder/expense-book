@@ -8,6 +8,7 @@ const kLightTextStyle = TextStyle(color: kBlackColor, fontSize: 14);
 const kHintTextStyle = TextStyle(color: kTextGreyColor, fontSize: 14, fontWeight: FontWeight.normal);
 const kCreditTextStyle = TextStyle(fontSize: 20, color: kGreenColor);
 const kDebitTextStyle = TextStyle(fontSize: 20, color: kRedColor);
+const subtitleTextStyle = TextStyle(fontSize: 12, color: kTextGreyColor, fontWeight: FontWeight.normal);
 
 
 class StyleProperty {
